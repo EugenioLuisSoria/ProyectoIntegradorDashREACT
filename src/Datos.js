@@ -1,28 +1,32 @@
 import React from 'react';
-import {useState , useEffect} from 'react';
+import { useState , useEffect } from 'react';
 
 
 const Datos = () => {
     const [datos, setDatos] = useState([]);
-    const [loading, setLoading] = useState(true);
+  //  const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        console.log("montado")
-        fetch('http://localhost:3000/api/users',{
+        console.log("montando...");
+        
+        window.fetch('http://localhost:3000/api/users',{
 	        'mode': 'no-cors',
 	        'headers': {
             	'Access-Control-Allow-Origin': '*',
-            }})
-        .then(response => response.json())
+               	'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+            }
+            })
+        .then(res => {res.json(); console.log(res.json().users);})
         .then(data => {
             console.log(data)
             setDatos(data);
-            setLoading(false);
+           // setLoading(false);
         })
         .catch(error => {
             console.log(error)
         })
     },[]);
+
 
     useEffect(() => {
         console.log("actualizando...");
@@ -35,7 +39,8 @@ const Datos = () => {
         <div>
             <ul>
             {datos.map((dato,i) => {
-                   ( <li key={i} >{dato}</li>)
+                    console.log(datos)
+                   return ( <li key={i} >{dato}</li>)
 })}
             </ul>
             

@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.css';
+/* 
+import DatosClass from './DatosClass.js';
+*/
 import Datos from './Datos';
 
 function App() {
